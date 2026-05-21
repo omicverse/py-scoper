@@ -1,0 +1,6 @@
+include LICENSE
+include README.md
+include pyproject.toml
+recursive-include pyscoper/_data *.csv
+recursive-include tests *.py *.R
+recursive-include examples *.py *.ipynb

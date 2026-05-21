@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyscoper"
+version = "0.1.0"
+description = "Pure-Python port of the R/CRAN package scoper — spectral, hierarchical and identity clustering for B-cell clonal partitioning (Immcantation)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Zehua Zeng", email = "starlitnightly@163.com" },
+]
+keywords = [
+    "scoper", "immcantation", "B-cell-clones", "clonal-clustering",
+    "spectral-clustering", "AIRR-seq", "BCR", "immunoglobulin",
+    "repertoire", "junction", "hierarchical-clustering",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+dependencies = [
+    "numpy>=1.23",
+    "scipy>=1.10",
+    "pandas>=1.5",
+    "matplotlib>=3.6",
+]
+
+[project.optional-dependencies]
+# pyalakazam / pyshazam supply the AA-translation, germline-consensus and
+# locus helpers; pyscoper falls back to internal implementations if absent.
+full = ["pyalakazam>=0.1", "pyshazam>=0.1"]
+dev = ["pytest>=7", "pytest-cov", "scikit-learn>=1.0", "ruff"]
+
+[project.urls]
+Homepage = "https://github.com/omicverse/py-scoper"
+Repository = "https://github.com/omicverse/py-scoper"
+Issues = "https://github.com/omicverse/py-scoper/issues"
+"Upstream CRAN package" = "https://cran.r-project.org/package=scoper"
+"Upstream docs" = "https://scoper.readthedocs.io"
+
+[tool.setuptools.packages.find]
+include = ["pyscoper*"]
+exclude = ["tests*", "examples*", "scoper-ref*"]
+
+[tool.setuptools.package-data]
+pyscoper = ["_data/*.csv"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::FutureWarning",
+    "ignore::RuntimeWarning",
+]
